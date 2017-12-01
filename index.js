@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const { recipes } = require('./routes')
 const { users } = require('./routes')
+const passport = require('./config/auth')
 
 const port = process.env.PORT || 3030
 
@@ -10,6 +11,7 @@ let app = express()
 app
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
+  .use(passport.initialize())
 
   // Our recipes routes
   .use(recipes)
